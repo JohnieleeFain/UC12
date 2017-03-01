@@ -33,9 +33,16 @@ function getAreaCode(phoneNum) {
 
     try {
         areaCode = between(phoneNum, "(", ")");
+        areaCode = areaCode.trim();
+        if(areaCode.length == 3 && Number(areaCode)){
+            return areaCode;
+        } else{
+            throw new Error("Invalid area code: " + areaCode);
+        }
     } catch (error) {
-        console.log(error.message);
-        return undefined;
+        throw new Error("Invalid phone number: " + error.message);
+        //console.log(error.message);
+        //return undefined;
     }
 }
 
