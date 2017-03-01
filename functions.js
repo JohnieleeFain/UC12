@@ -41,10 +41,28 @@ function getAreaCode(phoneNum) {
         }
     } catch (error) {
         throw new Error("Invalid phone number: " + error.message);
-        //console.log(error.message);
+        console.log(error.message);
         //return undefined;
     }
 }
+
+function getLineCode(phoneNum){
+    var lineCode;
+
+    try{
+        lineCode = between(phoneNum, "-","");
+        lineCode = lineCode.trim();
+        if(lineCode.length = 4 && Number(lineCode)){
+            return lineCode;
+        } else{
+            throw new Error("Invalid line code: " + lineCode);
+        }
+    }catch (error) {
+            throw new Error("Invalid phone number: " + error.message);
+
+        }
+
+ }
 
 /**
  * Displays the area code for an inputted phone number
@@ -67,3 +85,23 @@ function displayAreaCode(inputId, outputId) {
     document.getElementById(outputId).innerHTML = outputText;
 }
 
+/**
+ * Displays the line code for an inputted phone number
+ * @param {string} inputId  The element id for the text box
+ * @param {string} outputId The element id of message div
+ */
+function displayLineCode(inputId, outputId) {
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value;
+
+    // Now try to get the code
+    try {
+        var lineCode = getLineCode(phoneNum);
+        outputText = "Your line code is " + lineCode;
+    } catch (error) {
+        console.log(error.message);
+        outputText = error.message;
+    }
+
+    document.getElementById(outputId).innerHTML = outputText;
+}
