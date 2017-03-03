@@ -45,7 +45,11 @@ function getAreaCode(phoneNum) {
         //return undefined;
     }
 }
-
+/**
+ * Returns a line code from a phone number
+ * @param   {string} phoneNum The phone number
+ * @returns {string} The area code
+ */
 function getLineCode(phoneNum){
     var lineCode;
 
