@@ -52,9 +52,10 @@ function getAreaCode(phoneNum) {
  */
 function getLineCode(phoneNum){
     var lineCode;
+    phoneNum += "*";
 
     try{
-        lineCode = between(phoneNum, "-","");
+        lineCode = between(phoneNum, "-","*");
         lineCode = lineCode.trim();
         if(lineCode.length = 4 && Number(lineCode)){
             return lineCode;
