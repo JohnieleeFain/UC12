@@ -111,46 +111,38 @@ function displayLineCode(inputId, outputId) {
     document.getElementById(outputId).innerHTML = outputText;
 }
 
-function validPhone(number) {
-    // check and remove parenthesis
-    if (number.indexOf('(') != 0 && number.indexOf(')') != 4) {
-        console.log("Missing parenthesis.");
-        return false;
+function ValidPhone(phoneNum) {
+  if(phoneNum.length == 14);
+  if(phoneNum.slice(9,11) == "-");
+  if(phoneNum.slice(0,2) == "(" && phoneNum.slice(4,6) == ")"){
+     var text = "Valid";
     }
     else {
-        //remove the parenthesis
-        number = number.replace(')', '');
-        number = number.replace('(', '');
-        console.log(number);
+     var text = "Invalid";
     }
-    // check to see if the - is in the correct place and the other digits are numbers
-    var cell = number.split('-');
-    console.log(cell);
-    if (Number(cell[1]) && Number(cell[0]) && number.charAt(6) == '-' && number.length == 11) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
+ return text;
 
-function disPhoneNum(inputId, outputId) {
-    var input = document.getElementById(inputId).value;
-    var outputText = "";
-    if (validPhone(input) == true) {
-        outputText = "The number " + input + " is a valid phone number.";
+}
+function displayValidPhone(phoneNum) {
+var outputText = "";
+var phoneNum = document.getElementById(inputId).value
+try {
+   var ValidPhone = ValidPhone(phoneNum);
+    outputText = " InValid Phone Number" + lineCode;
+} catch (error) {
+        console.log(error.message);
+        outputText = error.message;
     }
-    else {
-        outputText = "The number " + input + " is not a phone number.";
-    }
+
     document.getElementById(outputId).innerHTML = outputText;
 }
-function getCoCode(PhoneNum) {
+
+function getCoCode(phonenum) {
 
     var CoCode;
 
     try {
-        CoCode = between(PhoneNum, " " , "-");
+        CoCode = between(phonenum, " " , "-");
         CoCode = CoCode.trim();
         if (CoCode.length == 3 && Number(CoCode)) {
             return CoCode;
@@ -161,3 +153,20 @@ function getCoCode(PhoneNum) {
         throw new Error("Invalid phone number: " + error.message);
     }
 }
+
+function displayCoCode(inputId, outputId) {
+    var outputCoText = "";
+    var phoneNum = document.getElementById(inputCoId).value;
+
+    // Now try to get the code
+    try {
+        var CoCode = getCoCode(phoneNum);
+        outputCoText = "Your CO code is " + CoCode;
+    } catch (error) {
+        console.log(error.message);
+        outputCoText = error.message;
+    }
+
+    document.getElementById(outputCoId).innerHTML = outputCoText;
+}
+
