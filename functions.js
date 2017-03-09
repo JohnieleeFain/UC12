@@ -138,10 +138,26 @@ function disPhoneNum(inputId, outputId) {
     var input = document.getElementById(inputId).value;
     var outputText = "";
     if (validPhone(input) == true) {
-        outputText = "The number " + input + " is a actual phone number.";
+        outputText = "The number " + input + " is a valid phone number.";
     }
     else {
         outputText = "The number " + input + " is not a phone number.";
     }
     document.getElementById(outputId).innerHTML = outputText;
+}
+function getCoCode(PhoneNum) {
+
+    var CoCode;
+
+    try {
+        CoCode = between(PhoneNum, " " , "-");
+        CoCode = CoCode.trim();
+        if (CoCode.length == 3 && Number(CoCode)) {
+            return CoCode;
+        } else {
+            throw new Error("Invalid  CoCode: " + CoCode);
+        }
+    } catch (error) {
+        throw new Error("Invalid phone number: " + error.message);
+    }
 }
