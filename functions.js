@@ -109,3 +109,38 @@ function displayLineCode(inputId, outputId) {
 
     document.getElementById(outputId).innerHTML = outputText;
 }
+
+function validPhone(number) {
+    // check and remove parenthesis
+    if (number.indexOf('(') != 0 && number.indexOf(')') != 4) {
+        console.log("Missing parenthesis.");
+        return false;
+    }
+    else {
+        //remove the parenthesis
+        number = number.replace(')', '');
+        number = number.replace('(', '');
+        console.log(number);
+    }
+    // check to see if the - is in the correct place and the other digits are numbers
+    var cell = number.split('-');
+    console.log(cell);
+    if (Number(cell[1]) && Number(cell[0]) && number.charAt(6) == '-' && number.length == 11) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function disPhoneNum(inputId, outputId) {
+    var input = document.getElementById(inputId).value;
+    var outputText = "";
+    if (validPhone(input) == true) {
+        outputText = "The number " + input + " is a actual phone number.";
+    }
+    else {
+        outputText = "The number " + input + " is not a phone number.";
+    }
+    document.getElementById(outputId).innerHTML = outputText;
+}

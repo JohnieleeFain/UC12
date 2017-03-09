@@ -27,3 +27,9 @@ QUnit.test( "Errors thrown for getLineCode", function( assert ) {
         getAreCode("(415) 444-555");
     }, "Missing '5'. An error should have been thrown." );
 });
+ 1//
+ Qunit.test ("Test Valid Phone Number" , function (assert){
+     var num = "(415) 555-5555";
+     var result = disPhoneNum(num)
+     assert.deepEqual(resul,"(415) 555-5555", "Valid line code test passed")
+ });
