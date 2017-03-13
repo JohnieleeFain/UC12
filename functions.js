@@ -113,23 +113,22 @@ function displayLineCode(inputId, outputId) {
 
 function ValidPhone(phoneNum) {
   if(phoneNum.length == 14);
-  if(phoneNum.slice(9,11) == "-");
-  if(phoneNum.slice(0,2) == "(" && phoneNum.slice(4,6) == ")"){
-     var text = "Valid";
+  if(phoneNum.slice(9,10) == "-");
+  if(phoneNum.slice(0,1) == "(" && phoneNum.slice(4,5) == ")"){
+     return true
     }
     else {
-     var text = "Invalid";
+    return false
     }
- return text;
-
 }
-function displayValidPhone(phoneNum) {
-var outputText = "";
-var phoneNum = document.getElementById(inputId).value
-try {
-   var ValidPhone = ValidPhone(phoneNum);
-    outputText = " InValid Phone Number" + lineCode;
-} catch (error) {
+
+function displayValidPhone(inputId, outputId) {
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value
+    try {
+
+        outputText = "Valid Phone Number";
+    } catch (error) {
         console.log(error.message);
         outputText = error.message;
     }
@@ -155,18 +154,18 @@ function getCoCode(phonenum) {
 }
 
 function displayCoCode(inputId, outputId) {
-    var outputCoText = "";
-    var phoneNum = document.getElementById(inputCoId).value;
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value;
 
     // Now try to get the code
     try {
         var CoCode = getCoCode(phoneNum);
-        outputCoText = "Your CO code is " + CoCode;
+        outputText = "Your CO code is " + CoCode;
     } catch (error) {
         console.log(error.message);
-        outputCoText = error.message;
+        outputText = error.message;
     }
 
-    document.getElementById(outputCoId).innerHTML = outputCoText;
+    document.getElementById(outputId).innerHTML = outputText;
 }
 
